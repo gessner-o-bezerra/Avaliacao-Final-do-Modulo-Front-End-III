@@ -1,0 +1,309 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: url('../../assets/images/fundo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: rgb(124, 247, 9);
+    padding: 10px 0;
+}
+
+.logo {
+    background: url("../../assets/icons/RICK_MORTY_ICON-01.svg") no-repeat center center;
+    background-size: contain;
+    height: 50px;
+    width: 50px;
+    /* Provide a width or it won’t show up */
+    display: inline-block;
+    /* Ensures it behaves like an inline image */
+    margin-left: 10px;
+    border: none;
+    outline: none;
+}
+
+h1 {
+    font-size: 2rem;
+    animation: fadeIn 2s ease-in;
+    font-weight: bold;
+}
+
+.search-bar input {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.pagination-controls {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 0;
+}
+
+#prevButton,
+#nextButton {
+    position: absolute;
+    top: 50vh;
+    background-color: rgb(124, 247, 9);
+    color: white;
+    border-radius: 0.25rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    z-index: 10;
+}
+
+#prevButton {
+    left: 5px;
+}
+
+#nextButton {
+    right: 5px;
+}
+
+#prevButton:disabled,
+#nextButton:disabled {
+    background-color: #6c757d;
+}
+
+#prevButton:hover:not(:disabled),
+#nextButton:hover:not(:disabled) {
+    background-color: rgb(124, 247, 9);
+}
+
+.container {
+    display: flex;
+    width: 90%;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #70be857d;
+    border: none;
+    color: white;
+    width: 100%;
+    max-width: 540px;
+    transform: translateY(50px);
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.card img {
+    height: 100%;
+        width: 100%;
+    object-fit: cover;
+}
+
+.card-label {
+    color: #bdb2b2f2;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.status-alive {
+    background-color: rgb(124, 247, 9);
+}
+
+.status-dead {
+    background-color: red;
+}
+
+.status-unknown {
+    background-color: gray;
+}
+
+.footer {
+    background-color: #1a1a1a;
+    color: #b5b5b5;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-stats {
+    font-weight: bold;
+    color: #b5b5b5;
+}
+
+.footer-text {
+    color: #ffffff;
+}
+
+.footer-item-p,
+.footer-item {
+    font-size: 14px;
+}
+
+.footer-item-p {
+    color: #90bd9f93;
+
+    /* Tamanho de fonte menor para mobile */
+}
+
+.footer-item {
+    color: rgb(124, 247, 9);
+
+    /* Tamanho de fonte menor para mobile */
+}
+
+footer strong {
+    color: rgb(124, 247, 9);
+}
+
+/* Adiciona espaço extra no final dos cards */
+.cards-container {
+    padding-bottom: 50px;
+    /* Ajuste o valor conforme necessário */
+}
+
+.modal-body,
+.modal-header{
+    align-items: center;
+    color: #1a1a1a;
+}
+
+/* .modal {
+    display: block !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+} */
+
+
+
+/* Media Queries */
+
+@media (max-width: 667px) {
+
+    #prevButton,
+    #nextButton {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    #prevButton {
+        left: 10px;
+    }
+
+    #nextButton {
+        right: 10px;
+    }
+
+    .card {
+        width: 80%;
+        max-width: 280px;
+    }
+
+    .cards-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-bottom: 70px
+    }
+
+    .footer-item-p,
+    .footer-item,
+    .footer-text {
+        font-size: 12px;
+    }
+
+    .footer-item {
+        color: rgb(124, 247, 9);
+        /* Aumenta o tamanho da fonte em dispositivos maiores */
+    }
+
+    .footer-stats {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #prevButton,
+    #nextButton {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #prevButton {
+        left: 10px;
+    }
+
+    #nextButton {
+        right: 10px;
+    }
+
+        .card img {
+            height: 259px;
+            width: 150px;
+            object-fit: cover;
+        }
+
+    .cards-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-bottom: 70px
+    }
+
+    .footer-item-p,
+    .footer-item {
+        font-size: 16px;
+    }
+
+    .footer-item {
+        color: rgb(124, 247, 9);
+        /* Aumenta o tamanho da fonte em dispositivos maiores */
+    }
+
+    .footer-stats {
+        display: flex;
+        flex-direction: row;
+    }
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
