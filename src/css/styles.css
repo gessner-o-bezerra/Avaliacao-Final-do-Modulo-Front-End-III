@@ -22,7 +22,7 @@ header {
 }
 
 .logo {
-    background: url("../../assets/icons/RICK_MORTY_ICON-01.svg") no-repeat center center;
+    background: url("../../assets/icons/RICK_MORTY_ICON-01.svg");
     background-size: contain;
     height: 50px;
     width: 50px;
@@ -58,12 +58,12 @@ h1 {
     top: 50vh;
     background-color: rgb(124, 247, 9);
     color: white;
-    border-radius: 0.25rem;
+    border-radius: 10rem;
     padding: 8px 16px;
     cursor: pointer;
-    border: none;
-    font-size: 14px;
-    z-index: 10;
+    background-size: 70%;
+   z-index: 10;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 #prevButton {
@@ -74,6 +74,11 @@ h1 {
     right: 5px;
 }
 
+#prevButton:active,
+#nextButton:active {
+    transform: scale(0.95);
+}
+
 #prevButton:disabled,
 #nextButton:disabled {
     background-color: #6c757d;
@@ -81,7 +86,8 @@ h1 {
 
 #prevButton:hover:not(:disabled),
 #nextButton:hover:not(:disabled) {
-    background-color: rgb(124, 247, 9);
+    /* transform: scale(0.95); */
+    background-color: rgb(142, 182, 105);
 }
 
 .container {
@@ -103,6 +109,7 @@ h1 {
     color: white;
     width: 100%;
     max-width: 540px;
+    min-height: 350px;
     transform: translateY(50px);
     opacity: 1;
     transition: transform 0.5s ease, opacity 0.5s ease;
@@ -110,7 +117,7 @@ h1 {
 
 .card img {
     height: 100%;
-        width: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -126,6 +133,10 @@ h1 {
 .card.show {
     transform: translateY(0);
     opacity: 1;
+}
+
+.card-body {
+    margin-left: 10% !important;
 }
 
 .status-indicator {
@@ -192,20 +203,40 @@ footer strong {
 }
 
 .modal-body,
-.modal-header{
+.modal-header {
+    justify-content: space-around;
     align-items: center;
-    color: #1a1a1a;
+    color: #ffffff;
 }
 
-/* .modal {
-    display: block !important;
-    z-index: 9999 !important;
-    opacity: 1 !important;
-} */
+.modal-content {
+    background-image: url('../../assets/images/FUNDO_3.jpg');
+    background-size: 100% 100%;
+    /* Redimensiona a imagem para preencher 100% da largura e altura */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-custon-modal {
+    height: auto;
+    width: 50%;
+}
 
 
 
 /* Media Queries */
+
+@media (max-width: 576px) {
+
+    .container,
+    .container-sm {
+        max-width: 350px;
+    }
+
+    .card-body {
+        margin-left: 10% !important;
+    }
+}
 
 @media (max-width: 667px) {
 
@@ -233,6 +264,10 @@ footer strong {
         flex-wrap: wrap;
         justify-content: space-between;
         padding-bottom: 70px
+    }
+
+    .card-body {
+        margin-left: 10% !important;
     }
 
     .footer-item-p,
@@ -268,17 +303,22 @@ footer strong {
         right: 10px;
     }
 
-        .card img {
-            height: 259px;
-            width: 150px;
-            object-fit: cover;
-        }
+    .card img {
+        margin-top: 6px !important;
+        height: 100% !important;
+        width: 225px !important;
+        object-fit: cover;
+    }
 
     .cards-container {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         padding-bottom: 70px
+    }
+
+    .card-body {
+        margin-left: 25% !important;
     }
 
     .footer-item-p,

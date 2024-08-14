@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastEpisodeName = lastEpisode ? lastEpisode.name : "Desconhecido";
 
     cardDiv.innerHTML = `
-      <div class="row g-0">
+      <div class="row g-0 rounded-4">
         <div class="col-md-3">
-          <img src="${character.image}" class="card-img-top" alt="${character.name}">
+          <img src="${character.image}" class="card-img-top rounded float-start" alt="${character.name}">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -128,9 +128,6 @@ document.addEventListener("click", function(event) {
         const character = JSON.parse(event.target.getAttribute("data-character"));
         const modalHeader = document.querySelector("#characterModal .modal-header");
         const modalBody = document.querySelector("#characterModal .modal-body");
-        console.log(event.target);
-        console.log(character);
-        console.log(modalBody);
 
         let statusClass;
         let statusNaw;
@@ -162,7 +159,7 @@ document.addEventListener("click", function(event) {
         }
 
         modalHeader.innerHTML = `
-            <img src="${character.image}" class="img-fluid mb-3" alt="${character.name}">
+            <img src="${character.image}" class="mb-2 img-custon-modal" alt="${character.name}">
             <h5>${character.name}</h5>
         `
         modalBody.innerHTML = `
