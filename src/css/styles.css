@@ -209,10 +209,10 @@ h1 {
     /* Tamanho de fonte menor para mobile */
 }
 
-/* svg {
+svg {
     width: 35px;
     height: 35px;
-} */
+}
 
 footer strong {
     color: rgb(124, 247, 9);
