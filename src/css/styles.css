@@ -56,14 +56,18 @@ h1 {
 #nextButton {
     position: absolute;
     top: 50vh;
-    background-color: rgb(124, 247, 9);
-    color: white;
-    border-radius: 10rem;
+    color: rgb(124, 247, 9);
+    /* color: white; */
     padding: 8px 16px;
     cursor: pointer;
     background-size: 70%;
-   z-index: 10;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    z-index: 10;
+    border: none;
+    /* Remove a borda do botão */
+    outline: none;
+    /* Remove o contorno ao focar */
+    background: none;
+    transition: transform 0.3s ease, color 0.3s;
 }
 
 #prevButton {
@@ -77,17 +81,30 @@ h1 {
 #prevButton:active,
 #nextButton:active {
     transform: scale(0.95);
+    color: white;
 }
 
 #prevButton:disabled,
 #nextButton:disabled {
-    background-color: #6c757d;
+    color: #6c757d;
 }
 
-#prevButton:hover:not(:disabled),
-#nextButton:hover:not(:disabled) {
-    /* transform: scale(0.95); */
-    background-color: rgb(142, 182, 105);
+
+
+#nextNumber {
+    display: flex;
+    position: absolute;
+    top: 30%;
+    left: 44%;
+    margin-bottom: 1rem;
+}
+
+#prevNumber {
+    display: flex;
+    position: absolute;
+    top: 30%;
+    right: 44%;
+    margin-bottom: 1rem;
 }
 
 .container {
@@ -192,6 +209,11 @@ h1 {
     /* Tamanho de fonte menor para mobile */
 }
 
+/* svg {
+    width: 35px;
+    height: 35px;
+} */
+
 footer strong {
     color: rgb(124, 247, 9);
 }
@@ -239,6 +261,11 @@ footer strong {
 }
 
 @media (max-width: 667px) {
+
+    svg {
+        width: 35px;
+        height: 35px;
+    }
 
     #prevButton,
     #nextButton {
@@ -289,18 +316,35 @@ footer strong {
 
 @media (min-width: 768px) {
 
+    svg {
+        width: 35px;
+        height: 35px;
+    }
+
     #prevButton,
     #nextButton {
+        width: 35px;
+        height: 35px;
         padding: 10px 20px;
-        font-size: 16px;
+        font-size: 20px;
     }
 
     #prevButton {
-        left: 10px;
+        left: 30px;
     }
 
     #nextButton {
-        right: 10px;
+        right: 50px;
+    }
+
+    #nextNumber {
+        top: 35%;
+        left: 77%;
+    }
+
+    #prevNumber {
+        top: 30%;
+        right: 0%;
     }
 
     .card img {
