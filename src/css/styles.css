@@ -26,9 +26,7 @@ header {
     background-size: contain;
     height: 50px;
     width: 50px;
-    /* Provide a width or it won’t show up */
     display: inline-block;
-    /* Ensures it behaves like an inline image */
     margin-left: 10px;
     border: none;
     outline: none;
@@ -57,15 +55,12 @@ h1 {
     position: absolute;
     top: 50vh;
     color: rgb(124, 247, 9);
-    /* color: white; */
     padding: 8px 16px;
     cursor: pointer;
     background-size: 70%;
     z-index: 10;
     border: none;
-    /* Remove a borda do botão */
     outline: none;
-    /* Remove o contorno ao focar */
     background: none;
     transition: transform 0.3s ease, color 0.3s;
 }
@@ -82,11 +77,15 @@ h1 {
 #nextButton:active {
     transform: scale(0.95);
     color: white;
+    border: none;
+    outline: none;
 }
 
 #prevButton:disabled,
 #nextButton:disabled {
     color: #6c757d;
+    border: none;
+    outline: none;
 }
 
 
@@ -199,29 +198,26 @@ h1 {
 
 .footer-item-p {
     color: #90bd9f93;
-
-    /* Tamanho de fonte menor para mobile */
 }
 
 .footer-item {
     color: rgb(124, 247, 9);
-
-    /* Tamanho de fonte menor para mobile */
 }
 
 svg {
     width: 35px;
     height: 35px;
+    border: none;
+    outline: none;
 }
 
 footer strong {
     color: rgb(124, 247, 9);
 }
 
-/* Adiciona espaço extra no final dos cards */
+
 .cards-container {
     padding-bottom: 50px;
-    /* Ajuste o valor conforme necessário */
 }
 
 .modal-body,
@@ -234,7 +230,6 @@ footer strong {
 .modal-content {
     background-image: url('../../assets/images/FUNDO_3.jpg');
     background-size: 100% 100%;
-    /* Redimensiona a imagem para preencher 100% da largura e altura */
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -258,6 +253,11 @@ footer strong {
     .card-body {
         margin-left: 10% !important;
     }
+
+    .btn {
+        border: none;
+        outline: none;
+    }
 }
 
 @media (max-width: 667px) {
@@ -265,12 +265,21 @@ footer strong {
     svg {
         width: 35px;
         height: 35px;
+        border: none;
+        outline: none;
+    }
+
+    .btn {
+        border: none;
+        outline: none;
     }
 
     #prevButton,
     #nextButton {
         padding: 5px 10px;
         font-size: 10px;
+        border: none;
+        outline: none;
     }
 
     #prevButton {
@@ -305,7 +314,6 @@ footer strong {
 
     .footer-item {
         color: rgb(124, 247, 9);
-        /* Aumenta o tamanho da fonte em dispositivos maiores */
     }
 
     .footer-stats {
@@ -319,14 +327,23 @@ footer strong {
     svg {
         width: 35px;
         height: 35px;
+        border: none;
+        outline: none;
     }
 
     #prevButton,
     #nextButton {
+        border: none;
+        outline: none;
         width: 35px;
         height: 35px;
         padding: 10px 20px;
         font-size: 20px;
+    }
+
+    .btn {
+        border: none;
+        outline: none;
     }
 
     #prevButton {
@@ -372,7 +389,6 @@ footer strong {
 
     .footer-item {
         color: rgb(124, 247, 9);
-        /* Aumenta o tamanho da fonte em dispositivos maiores */
     }
 
     .footer-stats {
