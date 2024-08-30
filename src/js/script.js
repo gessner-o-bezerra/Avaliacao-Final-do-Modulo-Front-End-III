@@ -8,39 +8,55 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputLocation = document.querySelector("#location");
   const inputEpisode = document.querySelector("#episode");
 
-  let characters = [];
+   let characters = [];
   let episodes = [];
+  let locations = new Set();
   let currentPage = 1;
-  const charactersPerPage = 4;
+  const charactersPerPage = 4
+   let totalCharactersCount = 0;
+   let totalEpisodesCount = 0;
+  let totalPages = 1
 
- 
+   async function fetchCharacters(page = 1) {
+    try {
+      const response = await api.get(`/character?page=${page}`);
+      characters.push(...response.data.results); // Acumula personagens em vez de sobrescrever
+      totalPages = response.data.info.pages;
+      totalCharactersCount = response.data.info.count;
 
-  function fetchCharacters() {
-    api
-      .get("/character")
-      .then((response) => {
-        characters = response.data.results;
-        updateTotalCharacters();
-        
-        fetchEpisodes();
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the characters:", error);
+      characters.forEach((character) => {
+        if (character.origin.name !== "unknown" && character.origin.name !== "undefined") {
+          locations.add(character.origin.name);
+        }
       });
+
+      await fetchEpisodes();
+      displayCharacters();
+      updatePaginationButtons();
+
+      if (page < totalPages) {
+        await fetchCharacters(page + 1);
+      } else {
+        updateTotalCharacters();
+      }
+    } catch (error) {
+      console.error("There was an error fetching the characters:", error);
+    }
   }
 
-  function fetchEpisodes() {
-    api
-      .get("/episode")
-      .then((response) => {
-        episodes = response.data.results;
-        
-        displayCharacters();
-        updatePaginationButtons();
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the episodes:", error);
-      });
+  async function fetchEpisodes(page = 1) {
+    try {
+      const response = await api.get(`/episode?page=${page}`);
+      episodes.push(...response.data.results);
+      totalPages = response.data.info.pages;
+      totalEpisodesCount = response.data.info.count;
+
+      if (page < totalPages) {
+        await fetchEpisodes(page + 1);
+      }
+    } catch (error) {
+      console.error("There was an error fetching the episodes:", error);
+    }
   }
 
   function displayCharacters() {
@@ -54,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardsContainer.appendChild(card);
     });
 
-    updateTotalCharacters();
+    updatePaginationButtons();
   }
 
   function createCard(character) {
@@ -180,7 +196,6 @@ document.addEventListener("click", function(event) {
     if (currentPage < Math.ceil(characters.length / charactersPerPage)) {
       currentPage++;
       displayCharacters();
-      updatePaginationButtons();
     }
   }
 
@@ -188,7 +203,6 @@ document.addEventListener("click", function(event) {
     if (currentPage > 1) {
       currentPage--;
       displayCharacters();
-      updatePaginationButtons();
     }
   }
 
@@ -197,8 +211,8 @@ document.addEventListener("click", function(event) {
     const filteredCharacters = characters.filter((character) =>
       character.name.toLowerCase().includes(searchTerm)
     );
+    currentPage = 1;
     characters = filteredCharacters;
-    currentPage = 1; // Reset to first page after filtering
     displayCharacters();
     updatePaginationButtons();
   }
@@ -206,7 +220,7 @@ document.addEventListener("click", function(event) {
   function updateTotalCharacters() {
     totalCharacters.innerHTML = `
     <p id="totalCharacters" class="footer-item-p mb-2 mb-md-0">Personagens:
-    <span class="footer-item mb-2 mb-md-0">${characters.length}</span>
+    <span class="footer-item mb-2 mb-md-0">${totalCharactersCount}</span>
     </p>
        
     `;
@@ -220,7 +234,7 @@ document.addEventListener("click", function(event) {
 
     inputEpisode.innerHTML = `
       <p id="totalCharacters" class="footer-item-p mb-2 mb-md-0">EPISÓDIOS:
-    <span class="footer-item mb-2 mb-md-0">${episodes.length}</span>
+    <span class="footer-item mb-2 mb-md-0">${totalEpisodesCount}</span>
     </p> 
     `;
   }
